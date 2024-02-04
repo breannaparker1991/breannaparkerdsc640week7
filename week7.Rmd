@@ -1,0 +1,58 @@
+---
+title: "Week7"
+output: html_document
+date: "2024-01-22"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+setwd("C:/Users/brean/OneDrive/Desktop/640/week7/breannaparkerdsc640week7")
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+```{r}
+library(readr)
+
+data <- read.csv("crimerates-by-state-2005.csv")
+data
+
+
+```
+
+
+
+```{r }
+#scatterplot
+plot(x=data$robbery, y=data$murder,
+     xlab="Robbery By State", ylab="Murder By State",
+     main="Correlation of Murder and Robberies")
+
+```
+
+
+```{r }
+#bubble graph
+library(ggplot2)
+library(dplyr)
+library(plotly)
+
+ggplot(data, aes(x=murder, y=burglary, size = population, color=state)) +
+    geom_point(alpha=0.7) +
+    scale_size(range = c(.1, 24), name="Population (M)")
+
+```
+
+```{r }
+#density graph
+d <- density(data$murder)
+plot(d, main="Density of Murders")
+polygon(d, col="red")
+
+
+```
+
+
+
